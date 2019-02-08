@@ -1,0 +1,33 @@
+.mainContainer{
+    font-size: 500%;
+    margin-top: 10%;
+    text-align: center;
+}
+
+.inputContainer{
+    font-size: 30%;
+    margin-top: 5%;
+}
+
+#balance{
+    visibility: hidden;
+    font-size: 50%;
+    color: green;
+}
+
+#errorMessage{
+    color: red;
+}
+
+table {
+    border-spacing: 15px;
+}
+
+table.weightsList {
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+table.weights{
+    display: inline;
+}

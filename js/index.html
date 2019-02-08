@@ -1,0 +1,38 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <script src="js/scripts.js"></script>
+
+    <div class="mainContainer">
+        <table class="weights">
+            <tr id="lWeightsRow"></tr>
+        </table>
+        ———————
+        <table class="weights">
+            <tr id="rWeightsRow"></tr>
+        </table>    
+
+        <p id="balance">Штанга готова</p>
+
+        <div class="inputContainer">
+            <input id="weightInput" type="number">    
+            <button onclick="addWeight(document.getElementById('weightInput').value)">Добавить блин</button>
+            <p id = "errorMessage">
+            </p>
+
+            <table class="weightsList">
+                <p id="balance">Список блинов:
+                <tr id="weightsRow"></tr>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>
