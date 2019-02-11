@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static int[] weights;
+    private static int[] weights;
 
     public static void main(String[] args) {
 
@@ -14,6 +14,7 @@ public class Main {
             System.out.print(weight + " ");
 
         System.out.println();
+        Arrays.sort(weights);
         System.out.println("Maximum balanced weight is: " + maxBalancedWeight());
     }
 
@@ -50,29 +51,25 @@ public class Main {
 
     static int maxBalancedWeight(){
 
-        if (weights.length == 1)
-            return 0;
-
-        if (weights.length == 2) {
-            if (weights[0] == weights[1])
-                return 2 * weights[0];
-            return 0;
+        switch (weights.length){
+            case 1:
+                return 0;
+            case 2:
+                if (weights[0] == weights[1])
+                    return 2 * weights[0];
+                return 0;
+            case 3:
+                if (weights[0] == weights[1])
+                    return 2 * weights[0];
+                if (weights[1] == weights[2])
+                    return 2 * weights[1];
+                if (weights[0] + weights[1] == weights[2])
+                    return 2 * weights[2];
         }
 
-        Arrays.sort(weights);
-
-        if (weights.length == 3) {
-            if (weights[0] == weights[1])
-                return 2 * weights[0];
-            if (weights[1] == weights[2])
-                return 2 * weights[1];
-            return 0;
-        }
-
-        int currentSum = 0, max = maxPossibleWeight();
+        int currentSum = 0, max = maxPossibleWeight(0);
 
         for (int i = weights.length - 1; i >= 0; i--) {
-
             if (currentSum + weights[i] == max)
                 return 2 * max;
             if (currentSum + weights[i] < max)
@@ -81,17 +78,23 @@ public class Main {
         return 0;
     }
 
-    static int maxPossibleWeight(){
+    static int maxPossibleWeight(int i){
         int max = 0;
-        for (int weight : weights) {
-            max += weight;
+
+        if (i > weights.length - 1)
+            return 0;
+
+        for (int i1 = 0; i1 < weights.length - i; i1++) {
+            max += weights[i1];
         }
 
         max /= 2;
 
-        for (int weight : weights) {
-            if (weight > max)
-                max -= weight/2;
+        for (int i1 = 0; i1 < weights.length - i; i1++) {
+            if (weights[i1] > max){
+                max = maxPossibleWeight(++i);
+                break;
+            }
         }
         return max;
     }
