@@ -88,6 +88,15 @@ public class Main {
             max += weights[i1];
         }
 
+        if (max % 2 > 0){
+            for (int i1 = 0; i1 < weights.length - i; i1++) {
+                if (weights[i1] %2 > 0){
+                    max -= weights[i1];
+                    break;
+                }
+            }
+        }
+
         max /= 2;
 
         if (weights[weights.length - (i + 1)] > max)
