@@ -71,11 +71,11 @@ public class Main {
 
         for (int i = weights.length - 1; i >= 0; i--) {
             if (currentSum + weights[i] == max)
-                return 2 * max;
+                break;
             if (currentSum + weights[i] < max)
                 currentSum += weights[i];
         }
-        return 0;
+        return 2 * max;
     }
 
     static int maxPossibleWeight(int i){
