@@ -67,15 +67,12 @@ public class Main {
                     return 2 * weights[2];
         }
 
-        int currentSum = 0, max = maxPossibleWeight(0);
+        int max = maxPossibleWeight(0);
 
-        for (int i = weights.length - 1; i >= 0; i--) {
-            if (currentSum + weights[i] == max)
-                break;
-            if (currentSum + weights[i] < max)
-                currentSum += weights[i];
-        }
-        return 2 * max;
+        if(subsetSumExists(weights.length, max))
+            return 2 * max;
+        else
+            return 0;
     }
 
     static int maxPossibleWeight(int i){
@@ -103,5 +100,18 @@ public class Main {
             max = maxPossibleWeight(++i);
 
         return max;
+    }
+
+    static boolean subsetSumExists(int n, int sum)
+    {
+        if (sum == 0)
+            return true;
+        if (n == 0)
+            return false;
+
+        if (weights[n - 1] > sum)
+            return subsetSumExists(n - 1, sum);
+
+        return subsetSumExists(n - 1, sum) || subsetSumExists(n - 1, sum - weights[n - 1]);
     }
 }
